@@ -1,0 +1,14 @@
+{
+    "headers": [
+        "Graphic",
+        "Name",
+        "Rarity",
+        "Type",
+        "Subtype",
+        "Colour",
+        "ManaCost",
+        "Power",
+        "Toughness",
+        "Text"
+    ]
+}
