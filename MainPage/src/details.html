@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     
     </head>
-    <body>
+    <body style="background-image: url('Graphic/mainBackground3.jpg'); background-size: 100%; background-repeat: no-repeat;">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
@@ -19,8 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home
-                    </a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="search.html">Serach card</a>
@@ -31,8 +30,92 @@
         </nav>
         <!-- Content-->
         <h1 class="text-center">Card Details</h1>
+        <h1 class="text-center" id="name"></h1>
 
-        
+        <!-- Card Info-->
+        <div class="container">
+            <div class="row" style="font-size: 20px; color: black;">
+                <!-- Graphic-->
+                <div class="col-sm" id="cardImage">
+                </div>
+                <!-- Table-->
+                <table class="col-sm table" style="background: rgba(255,255,255,0.3);">
+                    <tbody class="font-weight-bold">
+                        <tr>
+                            <td>Type:</td>
+                            <td class="col-sm" id="cardType"></td>
+                        </tr>
+                        <tr>
+                            <td>Subtype:</td>
+                            <td class="col-sm" id="cardSubtype"></td>
+                        </tr>
+                        <tr>
+                            <td>Colors:</td>
+                            <td class="col-sm" id="cardColor"></td>
+                        </tr>
+                        <tr>
+                            <td>Supertypes:</td>
+                            <td class="col-sm" id="cardSupertypes"></td>
+                        </tr>
+                        <tr>
+                            <td>Rarity:</td>
+                            <td class="col-sm" id="cardRarity"></td>
+                        </tr>
+                        <tr>
+                            <td>Set Name:</td>
+                            <td class="col-sm" id="cardSet"></td>
+                        </tr>
+                        <tr>
+                            <td>Power:</td>
+                            <td class="col-sm" id="cardPower"></td>
+                        </tr>
+                        <tr>
+                            <td>Thughness:</td>
+                            <td class="col-sm" id="cardThughness"></td>
+                        </tr>
+                        <tr>
+                            <td>Mana Cost:</td>
+                            <td class="col-sm" id="cardManaCost"></td>
+                        </tr>
+                        <tr>
+                            <td>Text:</td>
+                            <td class="col-sm" id="cardText"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="col-sm font-weight-bold">
+                    <div>Type:</div>
+                    <div>Subtype:</div>
+                    <div>Colors:</div>
+                    <div>Supertypes:</div>
+                    <div>Rarity:</div>
+                    <div>Set Name:</div>
+                    <div>Power:</div>
+                    <div>Thughness:</div>
+                    <div>Mana Cost:</div>
+                    <div>Text:</div>
+                </div> -->
+                <!-- Card data-->
+                <!-- <div class="col-sm font-weight-bold">
+                    <div class="col-sm" id="cardType"></div>
+                    <div class="col-sm" id="cardSubtype"></div>
+                    <div class="col-sm" id="cardColor"></div>
+                    <div class="col-sm" id="cardSupertypes"></div>
+                    <div class="col-sm" id="cardRarity"></div>
+                    <div class="col-sm" id="cardSet"></div>
+                    <div class="col-sm" id="cardPower"></div>
+                    <div class="col-sm" id="cardThughness"></div>
+                    <div class="col-sm" id="cardManaCost"></div>
+                    <div class="col-sm" id="cardText"></div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Card Info-->
+        <div class="container" style="color: black;">
+            <h2>Opinions:</h2>
+            <div id="opinions"></div>
+        </div>
         <script src="details.js"></script>
     </body>
 </html>
