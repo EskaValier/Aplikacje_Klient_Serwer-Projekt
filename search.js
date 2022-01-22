@@ -1,19 +1,25 @@
-async function loadHeareds(url, table){
+async function loadHeareds(table){
     const tableHead = table.querySelector("thead");
     const tableBody = table.querySelector("tbody");
     tableHead.innerHTML = "<tr></tr>";
     tableBody.innerHTML = "";
-    fetch(url)
-    .then(response => {
-       return response.json();
-    })
-    .then(headers => {
-        for (const headerText of headers.headers) {
-            const headerElement = document.createElement("th");
-            headerElement.textContent = headerText;
-            tableHead.querySelector("tr").appendChild(headerElement);
-        }
-    });
+    let headers = [
+        "Graphic",
+        "Name",
+        "Rarity",
+        "Type",
+        "Subtype",
+        "Colour",
+        "ManaCost",
+        "Power",
+        "Toughness",
+        "Text on card"
+    ]
+    for (const headerText of headers) {
+        const headerElement = document.createElement("th");
+        headerElement.textContent = headerText;
+        tableHead.querySelector("tr").appendChild(headerElement);
+    }
 }
 
 async function dataFromApi(url, table){
@@ -66,25 +72,59 @@ async function dataFromApi(url, table){
             originalTextElement.textContent = card.originalText;
             rowElement.appendChild(originalTextElement);
 
-            rowElement.onclick = () => window.location.href = "http://localhost/details.html?id="+ card.id;
+            rowElement.onclick = () => window.location.href = "details.html?id="+ card.id;
             tableBody.appendChild(rowElement);
-
-            // console.log("-----------------------------");
-            // console.log("Card: " + card.imageUrl);
-            // let cardName = card.name;
-            // let cardType = card.type;
-            // let cardRarity = card.rarity;
-            // console.log(cardName);
-            // console.log(cardType);
-            // console.log(cardRarity);
         }
-        
     })
-
 }
+function filterSubmit(event) {
+    // console.log("filters");
+    const nameLabel = document.getElementById('nameLabel');
+    const RaritySelect1 = document.getElementById('RaritySelect1');
+    const typeLabel = document.getElementById('typeLabel');
+    const subtypeLabel = document.getElementById('subtypeLabel');
+    const colourSelect1 = document.getElementById('colourSelect1');
+    let url = "https://api.magicthegathering.io/v1/cards?page="+ page +"&pageSize=" + pageSize;
+    if(nameLabel.value != ""){
+        // console.log(nameLabel.value);
+        url += "&name=" + nameLabel.value;
+    }
+    if(RaritySelect1.value != "None"){
+        // console.log(RaritySelect1.value);
+        url += "&rarity=" + RaritySelect1.value;
+        
+    }
+    if(typeLabel.value != ""){
+        // console.log(typeLabel.value);
+        url += "&types=" + typeLabel.value;
+        
+    }
+    if(subtypeLabel.value != ""){
+        // console.log(subtypeLabel.value);
+        url += "&subtypes=" + subtypeLabel.value;
+        
+    }
+    if(colourSelect1.value != "None"){
+        // console.log(colourSelect1.value);
+        url += "&colors=" + colourSelect1.value;
+        
+    }
+    // console.log(nameLabel.value);
+    // console.log(RaritySelect1.value);
+    // console.log(typeLabel.value);
+    // console.log(subtypeLabel.value);
+    // console.log(colourSelect1.value);
+    // console.log(url)
+    loadHeareds(document.querySelector("table"));
+    dataFromApi(url, document.querySelector("table"));
+    event.preventDefault();
+  }
+
+const form = document.getElementById('filters');
+form.addEventListener('submit', filterSubmit);
 
 let page = 3;
 let pageSize = 10;
 
-loadHeareds("./data.json", document.querySelector("table"));
+loadHeareds(document.querySelector("table"));
 dataFromApi("https://api.magicthegathering.io/v1/cards?page="+ page +"&pageSize=" + pageSize, document.querySelector("table"));

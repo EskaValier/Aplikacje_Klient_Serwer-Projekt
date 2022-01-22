@@ -87,5 +87,5 @@ async function dataFromApi(url, table){
 let page = 3;
 let pageSize = 10;
 
-dataFromApi("https://api.magicthegathering.io/v1/cards?page="+ page +"&pageSize=" + pageSize, document.querySelector("table"));
-loadIntoTable("./data.json", document.querySelector("table"));
+// dataFromApi("https://api.magicthegathering.io/v1/cards?page="+ page +"&pageSize=" + pageSize, document.querySelector("table"));
+// loadIntoTable("./data.json", document.querySelector("table"));
