@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: options-deploy
+  name: options-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: options-deploy
+  template:
+    metadata:
+      labels:
+        app: options-deploy
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/labproj19/options:1.0
+        name: options-deploy
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: mysql_db-secret
+        resources: {}
+status: {}

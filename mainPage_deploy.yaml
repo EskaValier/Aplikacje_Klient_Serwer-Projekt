@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mainPage-deploy
+  name: mainPage-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mainPage-deploy
+  template:
+    metadata:
+      labels:
+        app: mainPage-deploy
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/labproj19/mainPage:1.0
+        name: mainPage-deploy
+        ports:
+        - containerPort: 8080
+status: {}
