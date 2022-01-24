@@ -6,7 +6,13 @@ const id = urlParams.get('id');
 const mtg_API_URL = "https://api.magicthegathering.io/v1/cards/" + id;
 // console.log(mtg_API_URL);
 fetch(mtg_API_URL)
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
     .then(response => {
         // console.log(response)
         let card = response.card;
@@ -40,7 +46,13 @@ fetch(mtg_API_URL)
         // cardThughness
         // cardManaCost
         // cardText
-    });
+    })
+    .catch((error) => {
+        document.getElementById('name').innerText = "Failed to load data, ID not found";
+
+        console.log("Fetch card data failed")
+        console.log(error)
+    });;
 
 const opinion_service_URL = "http://opinions-svc.labproj19.svc.cluster.local:8080/" + id;
 
