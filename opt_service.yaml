@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: options-svc
+  name: opinions-svc
 spec:
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: options-deploy
+    app: opinions-deploy
   type: ClusterIP

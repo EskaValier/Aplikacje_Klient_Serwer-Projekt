@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: options-deploy
-  name: options-deploy
+    app: opinions-deploy
+  name: opinions-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: options-deploy
+      app: opinions-deploy
   template:
     metadata:
       labels:
-        app: options-deploy
+        app: opinions-deploy
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/labproj19/options:1.0
-        name: options-deploy
+      - image: image-registry.openshift-image-registry.svc:5000/labproj19/opinions:1.0
+        name: opinions-deploy
         ports:
         - containerPort: 8080
         envFrom:
