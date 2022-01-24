@@ -1,11 +1,11 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get('id')
+const id = urlParams.get('id');
 // console.log(id);
 
-const url = "https://api.magicthegathering.io/v1/cards/" + id;
-// console.log(url);
-fetch(url)
+const mtg_API_URL = "https://api.magicthegathering.io/v1/cards/" + id;
+// console.log(mtg_API_URL);
+fetch(mtg_API_URL)
     .then(response => response.json())
     .then(response => {
         // console.log(response)
@@ -40,4 +40,45 @@ fetch(url)
         // cardThughness
         // cardManaCost
         // cardText
+    });
+
+const opinion_service_URL = "http://opinions-svc.labproj19.svc.cluster.local:8080/" + id;
+
+fetch(opinion_service_URL)
+    .then((response) => {
+        console.log(opinion_service_URL);
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Something went wrong');
+        }
     })
+    .then((responseJson) => {
+        const opinionList = document.getElementById('opinions');
+        if(responseJson = {}){
+            const listElement = document.createElement("li");
+            listElement.className = "list-group-item";
+            listElement.textContent = "Not added yet";
+
+            opinionList.appendChild(listElement);
+        } else {
+            for(const opinion of responseJson){
+            const listElement = document.createElement("li");
+            listElement.className = "list-group-item";
+            listElement.textContent = opinion;
+
+            opinionList.appendChild(listElement);
+        }
+        }
+        
+    })
+    .catch((error) => {
+        const opinionList = document.getElementById('opinions');
+        const listElement = document.createElement("li");
+        listElement.className = "list-group-item";
+        listElement.textContent = "Not added yet";
+        opinionList.appendChild(listElement);
+
+        console.log("Fetch opinions failed")
+        console.log(error)
+    });
