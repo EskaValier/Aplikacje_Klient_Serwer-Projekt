@@ -1,3 +1,5 @@
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Admin123');
+
 CREATE DATABASE mtgsearch;
 USE mtgsearch;
 
