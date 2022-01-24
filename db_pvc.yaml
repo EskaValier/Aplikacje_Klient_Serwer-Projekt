@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql_db-pvc
 spec:
-  storageClassName: mysql_db-storage
+  storageClassName: managed-nfs-storage
   accessModes:
   - ReadWriteMany
   volumeMode: Filesystem
