@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql_db-svc
+  labels:
+    app: mysql_db-deploy
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+  selector:
+   app: mysql_db-deploy

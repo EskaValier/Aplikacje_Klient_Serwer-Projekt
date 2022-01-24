@@ -2,30 +2,30 @@ apiVersion: app/v1
 kind: Deployment
 metadata:
   labels:
-    app: mysql-deploy
-  name: mysql-deploy
+    app: mysql_db-deploy
+  name: mysql_db-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-deploy
+      app: mysql_db-deploy
   template:
     metadata:
       labels:
-        app: mysql-deploy
+        app: mysql_db-deploy
     spec:
       containers:
-      - name: mysql-deploy
+      - name: mysql_db-deploy
         image: image-registry.openshift-image-registry.svc:5000/labproj19/mysql:14.1
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 3306
         volumeMounts:
         - mountPath: /
-          name: mysqldb
+          name: mysql_db
         resources: {}
     volumes:
-    - name: mysqldb
+    - name: mysql_db
       persistentVolumeClaim:
         claimName: mysql_db-pvc
 status: {}
