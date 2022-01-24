@@ -23,4 +23,11 @@ spec:
         - secretRef:
             name: mysql_db-secret
         resources: {}
+        volumeMounts:
+        - name: config-map
+          mountPath: /etc/myconfig/
+      volumes:
+      - name: config-map
+        configMap:
+          name: mysql-cm
 status: {}
