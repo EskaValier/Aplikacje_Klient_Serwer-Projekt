@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mainPage_deploy
-  name: mainPage_deploy
+    app: mainPage-deploy
+  name: mainPage-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mainPage_deploy
+      app: mainPage-deploy
   template:
     metadata:
       labels:
-        app: mainPage_deploy
+        app: mainPage-deploy
     spec:
       containers:
       - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj19/mainpage:1.0
-        name: mainPage_deploy
+        name: mainPage-deploy
         ports:
         - containerPort: 8080
 status: {}

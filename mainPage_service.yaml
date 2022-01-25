@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mainPage_svc
+  name: mainPage-svc
 spec:
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: mainPage_deploy
+    app: mainPage-deploy
   type: ClusterIP

@@ -3,13 +3,13 @@ kind: Route
 metadata:
   creationTimestamp: null
   labels:
-    app: mainPage_deploy
-  name: mainPage_rt
+    app: mainPage-deploy
+  name: mainPage-rt
 spec:
   host: "mtgService.apps.cp4apps.cloudpak.site"
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: mainPage_svc
+    name: mainPage-svc
     weight: 100

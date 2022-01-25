@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql_db_pvc
+  name: mysql-db-pvc
 spec:
   storageClassName: managed-nfs-storage
   accessModes:

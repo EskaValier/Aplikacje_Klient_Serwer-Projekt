@@ -2,26 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: opinions_deploy
-  name: opinions_deploy
+    app: opinions-deploy
+  name: opinions-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: opinions_deploy
+      app: opinions-deploy
   template:
     metadata:
       labels:
-        app: opinions_deploy
+        app: opinions-deploy
     spec:
       containers:
       - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj19/ opinions:1.0
-        name: opinions_deploy
+        name: opinions-deploy
         ports:
         - containerPort: 8080
         envFrom:
         - secretRef:
-            name: mysql_db_secret
+            name: mysql-db-secret
         resources: {}
         volumeMounts:
         - name: config-map
@@ -29,5 +29,5 @@ spec:
       volumes:
       - name: config-map
         configMap:
-          name: mysql_cm
+          name: mysql-cm
 status: {}

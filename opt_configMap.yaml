@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  MYSQL_DB_HOST: "http://mysql_db-svc.labproj19.svc.cluster.local"
+  MYSQL_DB_HOST: "http://mysql-db-svc.labproj19.svc.cluster.local"
   MYSQL_DB_PORT: "3306"
 metadata:
-  name: mysql_cm
+  name: mysql-cm
   labels:
-    app: mysql_cm
+    app: mysql-cm
