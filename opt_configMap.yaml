@@ -4,6 +4,6 @@ data:
   MYSQL_DB_HOST: "http://mysql_db-svc.labproj19.svc.cluster.local"
   MYSQL_DB_PORT: "3306"
 metadata:
-  name: mysql-cm
+  name: mysql_cm
   labels:
-    app: mysql-cm
+    app: mysql_cm
