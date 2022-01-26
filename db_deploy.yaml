@@ -29,14 +29,13 @@ spec:
               secretKeyRef:
                 name: mysql-secret
                 key: rootpassword
-        args: ["--authentication_policy","mysql_native_password"]
+        args: ["--default-authentication-plugin","mysql_native_password"]
         volumeMounts:
         - mountPath: /var/lib/mysql
-          name: cluster-volume
+          name: var-lib-mysql
       volumes:
-      - name: cluster-volume
+      - name: var-lib-mysql
         persistentVolumeClaim:
           claimName: mysql-db-pvc
       securityContext:
         runAsUser: 1000
-        
