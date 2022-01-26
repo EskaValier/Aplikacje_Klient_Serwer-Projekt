@@ -5,7 +5,7 @@ metadata:
   labels:
     app: mysql-db-deploy
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - port: 3306
   selector:
