@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: opinions-deploy
+  name: opinions-rt
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: opinions-svc
+    weight: 100

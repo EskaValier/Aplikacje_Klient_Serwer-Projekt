@@ -15,7 +15,7 @@ spec:
         app: opinions-deploy
     spec:
       containers:
-      - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj19/opinions:1.0
+      - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj19/opinions:1.1
         name: opinions-deploy
         ports:
         - containerPort: 8080

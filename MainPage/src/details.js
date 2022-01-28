@@ -4,10 +4,12 @@ const id = urlParams.get('id');
 // console.log(id);
 
 const mtg_API_URL = "https://api.magicthegathering.io/v1/cards/" + id;
+const opinion_service_URL = "http://opinions-rt-labproj19.apps.ocp.lab.cloudpak.site/" + id;
 // console.log(mtg_API_URL);
 fetch(mtg_API_URL)
     .then(response => {
         if (response.ok) {
+            console.log(response)
             return response.json();
         } else {
             throw new Error('Something went wrong');
@@ -34,6 +36,7 @@ fetch(mtg_API_URL)
         document.getElementById('cardManaCost').innerText = card.manaCost == undefined ? "NotSet" : card.manaCost;
         document.getElementById('cardText').innerText = card.text == undefined ? "NotSet" : card.text;
 
+        this.postData();
         // name
         // cardImage
         // cardType
@@ -54,43 +57,62 @@ fetch(mtg_API_URL)
         console.log(error)
     });;
 
-const opinion_service_URL = "http://opinions-svc.labproj19.svc.cluster.local:8080/" + id;
+axios.get(opinion_service_URL, {
+    headers: { 
+        'x-apikey': '59a7ad19f5a9fa0808f11931',
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      }})
+  .then(function (response) {
+    // handle success
+    console.log("axios")
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log("axios err: ", error);
+  });
 
-fetch(opinion_service_URL)
-    .then((response) => {
-        console.log(opinion_service_URL);
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Something went wrong');
-        }
-    })
-    .then((responseJson) => {
-        const opinionList = document.getElementById('opinions');
-        if(responseJson = {}){
+async function postData (){
+    
+    fetch(opinion_service_URL, {mode: 'no-cors'})
+        // .then((response) => {
+        //     if (response.ok) {
+                // return response.json();
+        //     } else {
+        //         throw new Error('Something went wrong');
+        //     }
+        // })
+        .then((responseJson) => {
+            const opinionList = document.getElementById('opinions');
+            console.log(responseJson);
+            if(responseJson = {}){
+                console.log("pusto")
+                const listElement = document.createElement("li");
+                listElement.className = "list-group-item";
+                listElement.textContent = "Not added yet";
+
+                opinionList.appendChild(listElement);
+            } else {
+                console.log("dalej")
+                const obj = JSON.parse(responseJson);
+                for(const opinion of obj.opinions){
+                    const listElement = document.createElement("li");
+                    listElement.className = "list-group-item";
+                    listElement.textContent = opinion.Opinion;
+
+                    opinionList.appendChild(listElement);
+                }
+            }
+        })
+        .catch((error) => {
+            const opinionList = document.getElementById('opinions');
             const listElement = document.createElement("li");
             listElement.className = "list-group-item";
             listElement.textContent = "Not added yet";
-
             opinionList.appendChild(listElement);
-        } else {
-            for(const opinion of responseJson){
-            const listElement = document.createElement("li");
-            listElement.className = "list-group-item";
-            listElement.textContent = opinion;
 
-            opinionList.appendChild(listElement);
-        }
-        }
-        
-    })
-    .catch((error) => {
-        const opinionList = document.getElementById('opinions');
-        const listElement = document.createElement("li");
-        listElement.className = "list-group-item";
-        listElement.textContent = "Not added yet";
-        opinionList.appendChild(listElement);
-
-        console.log("Fetch opinions failed")
-        console.log(error)
-    });
+            console.log("Fetch opinions failed")
+            console.log(error)
+        });
+}
